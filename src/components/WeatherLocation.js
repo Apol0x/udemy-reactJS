@@ -7,7 +7,7 @@ import WeatherData from './WeatherData';
 // propia de ES6
 const WeatherLocation = () => (
     <div>
-        <Location city={"Sevilla"}/>
+        <Location city={"Madrid"}/>
         <WeatherData />
     </div>
 );
