@@ -1,14 +1,14 @@
 import React from 'react';
 import WeatherIcons from 'react-weathericons';
 
-/* const icons = {
+ const icons = {
     cloud: "cloud",
     cloudy: "cloudy",
     sun: "day-sunny",
     rain: "rain",
     snow: "snow",
     windy: "windy",
-} */
+} 
 const getWeatherIcons = (weatherState) => {
     const icon = icons[weatherState];
     if (icon)
