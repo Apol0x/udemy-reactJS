@@ -8,7 +8,7 @@ import {
   RAIN, 
   SNOW,  
   WINDY,
-} from '../constans/weather';
+} from '../../../constans/weather';
 
 
 const WeatherData = () => (
@@ -17,7 +17,7 @@ const WeatherData = () => (
       temperature={20}
       weatherState={SNOW}
     />
-    <WeatherExtraInfo humidity={"80%"} wind={"15km/h"} />
+    <WeatherExtraInfo humidity={80} wind={"15km/h"} />
   </div>
 );
 
