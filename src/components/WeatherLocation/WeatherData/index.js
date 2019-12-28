@@ -8,7 +8,7 @@ import {
   RAIN, */
   SNOW,
   /* WINDY, */
-} from '../constans/weather';
+} from '../../../constans/weather';
 
 
 const WeatherData = () => (
