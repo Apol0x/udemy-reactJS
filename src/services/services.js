@@ -6,6 +6,7 @@ const getDataFromResponse = response => {
     const { main: iconWeather } = response.weather[0];
     const { speed } = response.wind;
     const dataReturn = {
+      city: response.name,
       temperature: parseFloat(temp.toFixed(1)),
       weatherState: weatherIcon[iconWeather.toUpperCase()],
       humidity: humidity,
