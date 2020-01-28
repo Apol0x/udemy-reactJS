@@ -20,7 +20,6 @@ const api_key = CONSTANT.API_WEATHER_KEY;
 const url_base_weather = CONSTANT.URL_BASE;
 const api_call = `${url_base_weather}?q=${location}&units=metric&appid=${api_key}`;
 
-
 class WeatherLocation extends Component {
   constructor() {
     super();
@@ -33,7 +32,21 @@ class WeatherLocation extends Component {
         wind: "10 m/s",
       },
     }
+    console.info("constructor")
   };
+
+  componentDidMount() {
+    console.info(" componentDidMount componente se ha montado")
+    this.handleUpdateClick();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.info("componentDidUpdate componente se ha actualizado")
+  }
+
+  componentWillUnmount() {
+    console.info("componentWillUnmount componente se va a desmontar")
+  }
 
   handleUpdateClick = () => {
     fetch(api_call).then(resolve => {
@@ -50,6 +63,7 @@ class WeatherLocation extends Component {
     });
   };
   render() {
+    console.info("componente renderizado")
     const { city, data } = this.state;
     return (
       <div className="weatherLocationCont">
