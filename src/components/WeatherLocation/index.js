@@ -5,14 +5,6 @@ import WeatherData from './WeatherData';
 import CONSTANT from '../../config.js';
 import getDataFromResponse from '../../services/services.js';
 import './style.css';
-import {
-  CLOUDS,
-  SUN,
-  RAIN,
-  SNOW,
-  CLOUDY,
-  WINDY
-} from '../../constans/weather';
 
 
 const location = "Seville,spa";
@@ -24,13 +16,8 @@ class WeatherLocation extends Component {
   constructor() {
     super();
     this.state = {
-      city: 'Buenos Aires',
-      data: {
-        temperature: 5,
-        weatherState: CLOUDY,
-        humidity: 10,
-        wind: "10 m/s",
-      },
+      city: '--',
+      data: null
     }
     console.info("constructor")
   };
@@ -54,7 +41,7 @@ class WeatherLocation extends Component {
     }).then(data => {
       const weatherNow = getDataFromResponse(data);
       this.setState({
-        city: 'Sevilla',
+        city: weatherNow.city,
         data: weatherNow,
       });
 
@@ -68,8 +55,8 @@ class WeatherLocation extends Component {
     return (
       <div className="weatherLocationCont">
         <Location city={city} />
-        <WeatherData data={data} />
-        <button onClick={this.handleUpdateClick}>Actualizar</button>
+        {data ? <WeatherData data={data} /> : 'Loading...'}
+        
       </div>
     );
   }
