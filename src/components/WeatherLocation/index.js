@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-constructor */
 import React, { Component } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import CONSTANT from '../../config.js';
@@ -55,7 +56,7 @@ class WeatherLocation extends Component {
     return (
       <div className="weatherLocationCont">
         <Location city={city} />
-        {data ? <WeatherData data={data} /> : 'Loading...'}
+        {data ? <WeatherData data={data} /> : <CircularProgress />}
         
       </div>
     );
