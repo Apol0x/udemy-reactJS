@@ -1,23 +1,19 @@
 /* eslint-disable no-useless-constructor */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Location from './Location';
 import WeatherData from './WeatherData';
-import CONSTANT from '../../config.js';
 import getDataFromResponse from '../../services/services.js';
 import './style.css';
-
-
-const location = "Seville,spa";
-const api_key = CONSTANT.API_WEATHER_KEY;
-const url_base_weather = CONSTANT.URL_BASE;
-const api_call = `${url_base_weather}?q=${location}&units=metric&appid=${api_key}`;
+import getWeatherByCity from '../../services/getUrlWeatherByCity';
 
 class WeatherLocation extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { city } = props;
     this.state = {
-      city: '--',
+      city: city,
       data: null
     }
     console.info("constructor")
@@ -37,7 +33,8 @@ class WeatherLocation extends Component {
   }
 
   handleUpdateClick = () => {
-    fetch(api_call).then(resolve => {
+    const API_CALL = getWeatherByCity(this.state.city);
+    fetch(API_CALL).then(resolve => {
       return resolve.json();
     }).then(data => {
       const weatherNow = getDataFromResponse(data);
@@ -57,10 +54,13 @@ class WeatherLocation extends Component {
       <div className="weatherLocationCont">
         <Location city={city} />
         {data ? <WeatherData data={data} /> : <CircularProgress />}
-        
+
       </div>
     );
   }
 };
-
+//TODO: REQUERIR LOS PROPTYPES QUE VAMOS A CONFIGURAR
+WeatherLocation.propTypes = {
+  city: PropTypes.string.isRequired,
+}
 export default WeatherLocation;
