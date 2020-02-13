@@ -59,7 +59,6 @@ class WeatherLocation extends Component {
     );
   }
 };
-//TODO: REQUERIR LOS PROPTYPES QUE VAMOS A CONFIGURAR
 WeatherLocation.propTypes = {
   city: PropTypes.string.isRequired,
 }
