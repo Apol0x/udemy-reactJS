@@ -14,10 +14,10 @@ const cities = [
 ];
 
 class App extends Component {
- 
+
   handlerClickWeatherLocation = (city) => {
     console.log("handlerClickWeatherLocation from App:", city);
-   
+
   };
   render() {
     return (
@@ -26,7 +26,7 @@ class App extends Component {
           <AppBar position="sticky">
             <Toolbar>
               <Typography variant="title" color="inherit">
-                TITULO
+                WHEATHER APP
               </Typography>
             </Toolbar>
           </AppBar>
@@ -39,7 +39,9 @@ class App extends Component {
             </LocationList>
           </Col>
           <Col xs={12} md={6}>
-            <div className="details"></div>
+            <Paper elevation={4}>
+              <div className="details"></div>
+            </Paper>
           </Col>
         </Row>
       </Grid>
