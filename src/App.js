@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import LocationList from './components/LocationList.js';
 import './App.css';
+import ForeCastExtended from './components/ForeCastExtend.js';
 
 const cities = [
   "Madrid, es",
@@ -14,12 +15,18 @@ const cities = [
 ];
 
 class App extends Component {
-
+  constructor() {
+    super();
+    this.state = { city: null}
+  }
   handlerClickWeatherLocation = (city) => {
     console.log("handlerClickWeatherLocation from App:", city);
-
+    this.setState({
+      city
+    });
   };
   render() {
+    const { city } = this.state;
     return (
       <Grid>
         <Row>
@@ -40,7 +47,11 @@ class App extends Component {
           </Col>
           <Col xs={12} md={6}>
             <Paper elevation={4}>
-              <div className="details"></div>
+              {
+                city != null ? <div className="details">
+                  <ForeCastExtended city={city}></ForeCastExtended>
+                </div> : null
+              }
             </Paper>
           </Col>
         </Row>
