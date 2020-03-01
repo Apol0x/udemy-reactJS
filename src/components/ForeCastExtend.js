@@ -7,8 +7,9 @@ class ForeCastExtended extends Component {
     render(){
         return(
             <div>
+                <h2 className="forecast-title">Pronóstico extendido para {this.props.city}</h2>
                 <WeatherLocation city={this.props.city}></WeatherLocation>
-                {this.props.city}
+                
             </div>
         )
     }
