@@ -7,6 +7,7 @@ import WeatherData from './WeatherData';
 import getDataFromResponse from '../../services/services.js';
 import './style.css';
 import getWeatherByCity from '../../services/getUrlWeatherByCity';
+import axios from 'axios';
 
 class WeatherLocation extends Component {
   constructor(props) {
@@ -34,17 +35,15 @@ class WeatherLocation extends Component {
 
   handleUpdateClick = () => {
     const API_CALL = getWeatherByCity(this.state.city);
-    fetch(API_CALL).then(resolve => {
-      return resolve.json();
-    }).then(data => {
-      const weatherNow = getDataFromResponse(data);
+    axios.post(API_CALL).then((res) => {
+      const weatherNow = getDataFromResponse(res.data);
       this.setState({
         city: weatherNow.city,
         data: weatherNow,
       });
 
     }).catch(error => {
-      console.error(error)
+      console.error(error.status+"  msg: "+error.statusText);
     });
   };
   render() {
