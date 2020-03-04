@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Location from './Location';
 import WeatherData from './WeatherData';
-import getDataFromResponse from '../../services/services.js';
+import utilService from '../../services/services.js';
 import './style.css';
 import getWeatherByCity from '../../services/getUrlWeatherByCity';
 import axios from 'axios';
@@ -36,9 +36,9 @@ class WeatherLocation extends Component {
   handleUpdateClick = () => {
     const API_CALL = getWeatherByCity(this.state.city);
     axios.post(API_CALL).then((res) => {
-      const weatherNow = getDataFromResponse(res.data);
+      const weatherNow = utilService.getDataFromResponse(res.data);
       this.setState({
-        city: weatherNow.city,
+        city: this.state.city,
         data: weatherNow,
       });
 
