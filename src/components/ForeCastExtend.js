@@ -4,6 +4,7 @@ import WeatherLocation from "./WeatherLocation";
 import ForeCastItem from "./ForeCastItem";
 import axios from 'axios';
 import getForecastByCity from '../services/getForecastByCity';
+import utilService from '../services/services.js'
 /* const weekDays = [
     "LUNES",
     "MARTES",
@@ -29,22 +30,41 @@ class ForeCastExtended extends Component {
             forecastData: null,
         }
     }
+
     componentDidMount() {
-        axios.post(getForecastByCity(this.props.city))
-        .then((resp) => {
-            this.setState({
-                forecastData: resp.data,
-            });
-        })
-        .catch(function(error){
-            console.error("[msg] error at or when: ", error)
-        });
+        this.updateCity(this.props.city)
     }
 
-    renderForeCastItem() {
+    
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.city !== this.props.city){
+            this.setState({forecastData: null})
+            this.updateCity(nextProps.city)
+        }
+    }
+
+    updateCity = (city) => {
+        axios.post(getForecastByCity(city))
+            .then((resp) => {
+                console.log("RESPONSE FORECAST BEFORE TRANSFORM: ", resp)
+                this.setState({
+                    forecastData: utilService.getDataForecast(resp.data),
+                });
+            })
+            .catch(function (error) {
+                console.error("[msg] error at or when: ", error)
+            });
+    }
+
+    renderForeCastItem(forecastData) {
         console.log("estado de forecastData: ", this.state.forecastData)
-        return "Render Items";
-        //return days.map((dayWeek, index) => (<ForeCastItem key={index} weekDay={dayWeek} hour={10}data={data}></ForeCastItem> ));
+        return forecastData.map((forecast, index) => (
+            <ForeCastItem
+                key={index}
+                weekDay={forecast.weekDay}
+                hour={forecast.hour}
+                data={forecast.data}>
+            </ForeCastItem>));
     }
 
     renderProgress() {
@@ -55,8 +75,7 @@ class ForeCastExtended extends Component {
         return (
             <div>
                 <h2 className="forecast-title">Pronóstico extendido para {this.props.city}</h2>
-                <WeatherLocation city={this.props.city}></WeatherLocation>
-                {forecastData != null ? this.renderForeCastItem() : this.renderProgress()}
+                {forecastData != null ? this.renderForeCastItem(forecastData) : this.renderProgress()}
             </div>
         )
     }
