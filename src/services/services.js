@@ -5,7 +5,9 @@ import {
   SNOW,
   THUNDER,
   DRIZZLE,
-} from '../constans/weather'
+} from '../constans/weather';
+import moment from 'moment';
+import "moment/locale/es"
 
 
 /** 
@@ -52,7 +54,6 @@ export const getDataFromResponse = response => {
   const { id: weatherIconCode } = response.weather[0];
   const { speed } = response.wind;
   return {
-    city: response.name,
     temperature: parseFloat(temp.toFixed(1)),
     weatherState: parseCodeIconFromResponse(weatherIconCode),
     humidity: humidity,
@@ -66,7 +67,16 @@ export const getDataFromResponse = response => {
  * @param {respuesta llamada api por forecast} response 
  */
 export const getDataForecast = response => {
-  return {};
+  return response.list.filter(item => (
+    [6, 12, 18].includes(moment.utc(moment.unix(item.dt)).hour())
+  )).map(item => (
+    {
+      weekDay: moment.unix(item.dt).format('ddd'),
+      hour: moment.unix(item.dt).hour(),
+      data: getDataFromResponse(item)
+    }
+  ))
+
 }
 const utilService = {
   getDataFromResponse,
