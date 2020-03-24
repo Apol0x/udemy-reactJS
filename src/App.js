@@ -15,7 +15,10 @@ const cities = [
   "Berlin, ger"
 ];
 
+//Inicializamos la conexión con el redux-devtool
 const store = createStore(() => { }, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+const actionSetCity = (value) => ({ type: 'setCity', value }) //generamos acciones
 
 class App extends Component {
   constructor() {
@@ -27,8 +30,7 @@ class App extends Component {
     this.setState({
       city
     });
-    const action = { type: 'setCity', value: city};
-    store.dispatch(action);
+    store.dispatch(actionSetCity(city)); //despachamos la accion
   };
   render() {
     const { city } = this.state;
