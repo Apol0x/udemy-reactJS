@@ -8,6 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import LocationList from './components/LocationList.js';
 import './App.css';
 import ForeCastExtended from './components/ForeCastExtend.js';
+import { actionSetCity } from './actions';
 
 const cities = [
   "Madrid, es",
@@ -18,7 +19,7 @@ const cities = [
 //Inicializamos la conexión con el redux-devtool
 const store = createStore(() => { }, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
-const actionSetCity = (value) => ({ type: 'setCity', value }) //generamos acciones
+
 
 class App extends Component {
   constructor() {
