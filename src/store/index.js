@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import { city } from '../reducers/city.js';
 const initialState = {
-    city: "Sevilla, spa",
+    city: null,
 };
 
 
