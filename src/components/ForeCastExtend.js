@@ -1,27 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import WeatherLocation from "./WeatherLocation";
 import ForeCastItem from "./ForeCastItem";
 import axios from 'axios';
 import getForecastByCity from '../services/getForecastByCity';
 import utilService from '../services/services.js'
-/* const weekDays = [
-    "LUNES",
-    "MARTES",
-    "MIERCOLES",
-    "JUEVES",
-    "VIERNES",
-    "SABADO",
-    "DOMINGO",
-];
-
-const data = {
-    temperature: 22,
-    humidity: 15,
-    weatherState: "normal",
-    wind: "normal"
-} */
-
 
 class ForeCastExtended extends Component {
     constructor() {

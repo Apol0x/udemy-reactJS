@@ -6,12 +6,12 @@ import { ACTIONS_CONSTANT } from '../actions/index.js';
  * @param {Estado de la acción} state 
  * @param {Accion que se va a controlar} action 
  */
-
-const { SELECT_CITY_CONSULT } = ACTIONS_CONSTANT;
-export const city = (state = {}, action) => {
+const { SET_FORECAST_DATA } = ACTIONS_CONSTANT;
+export const cities = (state = {}, action) => {
     switch (action.type) {
-        case SELECT_CITY_CONSULT:
-            return  action.payload ;
+        case SET_FORECAST_DATA:
+            const { city, forecastData } = action.payload;
+            return { ...state, [city]:{ forecastData }};
         default:
             return state;
     }
