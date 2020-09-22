@@ -17,15 +17,17 @@ const renderForeCastItem = (forecastData) => {
 const renderProgress = () => {
     return <h3>Cargando...</h3>;
 }
-const ForeCastExtended = ({ city, forecastData }) => {
+const ForeCastExtended = ({ city, forecastData }) => (
     <div>
         <h2 className="forecast-title">Pronóstico extendido para {city}</h2>
         {forecastData != null ? renderForeCastItem(forecastData) : renderProgress()}
     </div>
-};
+);
+    
 
 ForeCastExtended.propTypes = {
     city: PropTypes.string.isRequired,
+    forecastData: PropTypes.array.isRequired,
 }
 
 export default ForeCastExtended;

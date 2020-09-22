@@ -5,9 +5,10 @@ import ForeCastExtend from '../components/ForeCastExtend.js';
 
 class ForeCastExtendedContainer extends Component {
     render() {
+        const {city, forecastData} = this.props;
         return (
-            this.props.city != null ? <div className="details">
-                <ForeCastExtend city={this.props.city}></ForeCastExtend>
+            city  ? <div className="details">
+                <ForeCastExtend city={city} forecastData={forecastData} />
             </div> : null
         
         )
@@ -16,6 +17,8 @@ class ForeCastExtendedContainer extends Component {
 
 ForeCastExtendedContainer.propTypes = {
     city: PropTypes.string.isRequired,
+    forecastData: PropTypes.array.isRequired,
+    
 }
-const mapStateToProps = ({ city }) => ({ city });
+const mapStateToProps = ({ city, cities }) => ({ city, forecastData: cities[city] && cities[city].forecastData });
 export default connect(mapStateToProps, null)(ForeCastExtendedContainer);
