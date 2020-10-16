@@ -1,4 +1,5 @@
 import { ACTIONS_CONSTANT } from '../actions/index.js';
+import { createSelector } from "reselect";
 /**
  * Aquí crearemos la función que recogerá los cambios de 
  * estados que se vayan lanzando en la acción para pasarselas
@@ -17,5 +18,4 @@ export const cities = (state = {}, action) => {
     }
 };
 
-export const getForecastDataFromCities = (state, city) => state[city] && state[city].forecastData;
-export const getCity = state => state.city;
+export const getForecastDataFromCities = createSelector((state, city) => state[city] && state[city].forecastData);
