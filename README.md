@@ -1,3 +1,19 @@
+## WEATHER WEB REACT
+
+### How to run this project?
+  - You have to configure a JS file on /constans with the name **config.js** an export an object with API_KEY, URL_BASE_WEATHER and URL_BASE_FORECAST
+  - Write the **api-key** of your user on _openweather_ .
+  
+
+When you do that, just only type on terminal ```npm start```
+
+
+
+
+
+
+
+***********************************************************************************************************
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
