@@ -1,6 +1,6 @@
 import { ACTIONS_CONSTANT } from '../actions/index.js';
 import { createSelector } from "reselect";
-import toPairs from 'lodash.topairs';
+import _ from 'lodash';
 /**
  * Aquí crearemos la función que recogerá los cambios de 
  * estados que se vayan lanzando en la acción para pasarselas
@@ -32,7 +32,8 @@ export const cities = (state = {}, action) => {
             return state;
     }
 };
-const fromObjToArray = cities => (toPairs(cities).map(([key, value]) => ({ key, name: key, data: value.weather })));
+const fromObjToArray = cities => (_.toPairs(cities).map(([key, value]) => ({ key, name: key, data: value.weather })));
+
 export const getForecastDataFromCities = createSelector(
     (state, city) => state[city] && state[city].forecastData, forecastData => forecastData
 );
