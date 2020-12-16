@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import LocationList from '../components/LocationList';
-import { getWeatherCities } from '../reducers/cities.js'
+import { getWeatherCities } from '../reducers/cities'
 import { setSelectedCity, setWeather } from '../actions';
 
 class LocationListContainer extends Component {
@@ -16,7 +16,7 @@ class LocationListContainer extends Component {
     render() {
         return (
             <LocationList
-                cities={this.props.getWeatherCities}//cuando le cambio cities a getWeatherCities falla
+                cities={this.props.citiesWeather}//cuando le cambio cities a getWeatherCities falla
                 onSelectWeatherLocation={this.handlerClickWeatherLocation}>
             </LocationList>
         );
