@@ -38,5 +38,5 @@ export const getForecastDataFromCities = createSelector(
     (state, city) => state[city] && state[city].forecastData, forecastData => forecastData
 );
 export const getWeatherCities = createSelector(
-    (state => fromObjToArray(state), cities => cities)
+    state => fromObjToArray(state), cities => cities
 );
