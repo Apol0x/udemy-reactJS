@@ -10,7 +10,7 @@ const LocationList = ({ cities, onSelectWeatherLocation }) => {
       onSelectWeatherLocation(city)
    };
 
-   const cityList = cities => {
+   const cityList = (cities) => {
       return (
          cities.map((cityMapped, index) =>
             <WeatherLocation
