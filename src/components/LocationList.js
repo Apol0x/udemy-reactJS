@@ -10,16 +10,19 @@ const LocationList = ({ cities, onSelectWeatherLocation }) => {
       onSelectWeatherLocation(city)
    };
 
-   const cityList = cities => {
+   const cityList = (cities) => {
       return (
          cities.map((cityMapped, index) =>
             <WeatherLocation
                key={index}
-               city={cityMapped}
-               weatherLocationHandlerClick={() => handlerWeatherLocationClick(cityMapped)} />
+               city={cityMapped.name}
+               weatherLocationHandlerClick={() => handlerWeatherLocationClick(cityMapped.name)}
+               data={cityMapped.data}
+            />
          )
       );
    };
+
    return (
       <div className="locationList">
          {cityList(cities)}
