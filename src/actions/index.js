@@ -19,20 +19,26 @@ const setWeatherCity = payload => ({ type: ACTIONS_CONSTANT.SET_WEATHER_CITY, pa
 const getWeatherCity = payload => ({ type: ACTIONS_CONSTANT.GET_WEATHER_CITY, payload });
 
 export const setSelectedCity = (payload) => {
-    return async dispatch => {
+    //redux-thunk   
+    return async (dispatch, getState) => {
         //activar en el estado un indicador de busqueda
         dispatch(actionSetCity(payload));
-
-        try {
+        //Comprobamos a partir del estado la hora enq ue se hace de nuevo la peticion
+        const state = getState();
+        const date = state.cities[payload] && state.cities[payload].forecastDataDate;
+        const now = new Date();
+        
+        if (date && (now - date) < 1 * 60 * 1000) {
+            return;
+        }
+        
+        
             const resp = await axios.post(getForecastByCity(payload));
             console.log("RESPONSE FORECAST BEFORE TRANSFORM: ", resp);
             const forecastData = utilService.getDataForecast(resp.data);
             //modificar estado con el resultado de la promise
             dispatch(setForeCastData({ city: payload, forecastData }));
-        }
-        catch (error) {
-            console.error("[msg] error at or when: ", error);
-        }
+        
     }
 };
 
