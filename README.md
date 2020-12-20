@@ -1,3 +1,17 @@
+# WEATHER WEB REACT
+## Course From [Udemy](https://www.udemy.com/share/101WzsAkATeFpXQHg=/) teached by [Emiliniano Ocariz](https://www.udemy.com/user/emiliano-ocariz/)
+### How to run this project?
+  - You have to configure a JS file on /constans with the name **config.js** an export an object with API_KEY, URL_BASE_WEATHER and URL_BASE_FORECAST
+  - Write the **api-key** of your user on _openweather_ .
+  
+
+### When you do that, just only type on terminal 
+
+### ```npm install```
+
+### ```npm start```
+
+***
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
